@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="app" >
+  <head>
+    <title>SaWynk | Home</title>
+    <link rel="stylesheet" href="stylesheets/materialize.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+  <!--  <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+--> <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/materialize.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/appScript.js"></script>
+  </head>
+<body ng-controller="userDetailsController">
+  <br>
+    <div class="row">
+      <div class="col m10 l10 push-m1 push-l1">
+        <div class="heading">
+          SaWynk
+        </div>
+      </div>
+      <div class="col m6 l6 push-m3 push-l3">
+        <div class='input-group'>
+          <input type="text" placeholder="Search Here" ng-model="search">
+        </div>
+      </div>
+    </div>
+    <div class="row"  ng-controller="playlistController">
+      <div class="col m10 l10 push-m1 push-l1">
+        <div class="row">
+          <div class="col m10 l10 push-m1 push-l1">
+            <div class="songs-list content">
+              <div class="song border-bottom"  ng-repeat="song in songs | orderBy:name_filter | filter:search">
+                <b>{{song.name}}</b><br>
+                <audio controls>
+                  <source src="songs/1.mp3" type="audio/mpeg">
+                </audio>
+                <br>
+                <b>Artist:&nbsp</b>{{song.artist}}<br>
+                <b>Genre:&nbsp</b>{{song.genre}}<br>
+                <b>Album:&nbsp</b>{{song.album}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</HTML>

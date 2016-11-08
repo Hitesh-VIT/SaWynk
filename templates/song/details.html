@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html ng-app="app" >
+  <head>
+    <title>SaWynk | Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <!--  <link href="https://fonts.googleapis.com/css?family=Lato:300,400|Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+--> <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  </head>
+  <style>
+body
+{
+  background:rgb(240,240,240);
+}
+.content
+{
+  background:white;
+  border: 2px solid rgba(0,0,0,0.8);
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  padding: 30px;
+}
+.border-right
+{
+  border-right: 1px solid rgba(0,0,0,0.5);
+}
+.border-left
+{
+  border-left: 1px solid rgba(0,0,0,0.5);
+}
+.border-bottom
+{
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+}
+.padding{
+  padding: 10px;
+}
+.song{
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.songs-list{
+  overflow-y: scroll;
+  height: 70vh;
+}
+.collapsible{
+  box-shadow: none !important;
+}
+.collapsible-list{
+  padding: 10px;
+}
+.collapsible-list li{
+  padding: 10px;
+  cursor:pointer;
+  transition: 0.4s all;
+}
+.collapsible-list li:hover{
+  background: rgba(0,0,0,0.04);
+  transition: 0.4s all;
+}
+.input-group input[type=text],.input-group input[type=password],.input-group input[type=email],.input-group textarea
+{
+  font-size: 18px;
+  border:2px solid rgba(0,0,0,0.5);
+  text-indent: 10px;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.27);
+  color: rgba(0, 0, 0,0.8);
+  margin-bottom: 20px;
+}
+.input-group input[type=text]:focus,.input-group input[type=password]:focus,.input-group input[type=email]:focus,.input-group textarea:focus{
+  border-bottom: 2px solid rgba(0,0,0,0.5) !important;
+  box-shadow: 0 0 0 0 rgba(0,0,0,0.5) !important;
+}
+.input-group input::-webkit-input-placeholder,.input-group textarea::-webkit-input-placeholder{
+  color: rgba(0, 0, 0,0.56);
+}
+.custom-submit
+{
+  text-decoration: none;
+  color: black;
+  padding:10px;
+  border:1px solid black !important;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  outline:none;
+  border:none;
+  background:white;
+  cursor: pointer;
+}
+.heading
+{
+  font-size:200%;
+  font-weight: bold;
+}
+.invalid
+{
+  margin-top: 10px;
+  color: red;
+}
+.disabled{
+  box-shadow: none;
+  color: rgba(0,0,0,0.5);
+  border-color: rgba(0,0,0,0.5) !important;
+}
+body:-webkit-full-page-media {
+ background-color:rgb(240,240,240) !important;
+}
+.register{
+  border-left: 1px solid black;
+  padding-left: 10%;
+}
+.login{
+  padding-right: 10%;
+}
+.login span, .register span{
+  font-size: 190%;
+  font-weight: bold;
+}
+.signup{
+  min-height: 550px;
+}
+@media(max-width:600px)
+{
+  .border-right,.border-left
+  {
+    display: none;
+  }
+}
+</style>
+<body ng-controller="userDetailsController">
+  <br>
+    <div class="row">
+      <div class="col m10 l10 push-m1 push-l1">
+        <div class="heading">
+          SaWynk
+        </div>
+      </div>
+      <div class="col m6 l6 push-m3 push-l3">
+        <div class='input-group'>
+          <input type="text" placeholder="Search Here" ng-model="search">
+        </div>
+      </div>
+    </div>
+    <div class="row"  ng-controller="userDetailsController">
+      <div class="col m10 l10 push-m1 push-l1">
+        <div class="row">
+          <div class="col m8 l8">
+            <div class="songs-list content">
+              <div class="song border-bottom"  ng-repeat="song in songs | orderBy:name_filter | filter:search">
+                <b>{{song.name}}</b><br>
+                <audio controls>
+                  <source src="songs/1.mp3" type="audio/mpeg">
+                </audio>
+                <br>
+                <b>Artist:&nbsp</b>{{song.artist}}<br>
+                <b>Genre:&nbsp</b>{{song.genre}}<br>
+                <b>Album:&nbsp</b>{{song.album}}
+                <div class="right">
+                  <a ng-click="addToPlaylist(song.name)">Add to Playlist</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col m4 l4">
+            <div class="filters content">
+              <b>Categorize by:</b>
+              <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                  <div class="collapsible-header">
+                    Artist
+                  </div>
+                  <div class="collapsible-body">
+                    <ul class="collapsible-list">
+                      <li class='border-bottom' ng-click="categorize('Linkin Park','artist')">Linkin Park</li>
+                      <li class='border-bottom' ng-click="categorize('Backstreet Boys','artist')">Backstreet Boys</li>
+                      <li class='border-bottom' ng-click="categorize('Drake','artist')">Drake</li>
+                      <li ng-click="categorize('Coldplay','artist')">Coldplay</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">
+                    Genre
+                  </div>
+                  <div class="collapsible-body">
+                    <ul class="collapsible-list">
+                      <li class='border-bottom' ng-click="categorize('Pop','genre')">Pop</li>
+                      <li class='border-bottom' ng-click="categorize('Rock','genre')">Hard Rock</li>
+                      <li class='border-bottom' ng-click="categorize('Blue','genre')">Blues</li>
+                      <li class='' ng-click="categorize('EDM','genre')">EDM</li>
+                    </ul>
+                  </div>
+                </li>
+                <li>
+                  <div class="collapsible-header">Album</div>
+                  <div class="collapsible-body">
+                    <ul class="collapsible-list">
+                      <li class='border-bottom' ng-click="categorize('One Night','album')">One Night</li>
+                      <li class='border-bottom' ng-click="categorize('Listen','album')">Listen</li>
+                      <li class='border-bottom' ng-click="categorize('Dark necessities','album')">Dark necessities</li>
+                      <li ng-click="categorize('Meteora','album')">Meteora</li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+              <b>Order By:</b>
+              <form>
+                <p>
+                  <input name="group1" type="radio" id="songName" ng-click="name_filter='name'"/>
+                  <label for="songName">Song Name</label>
+                </p>
+                <p>
+                  <input name="group1" type="radio" id="artistName" ng-click="name_filter='artist'"/>
+                  <label for="artistName">Artist Name</label>
+                </p>
+                <p>
+                  <input name="group1" type="radio" id="albumName" ng-click="name_filter='album'"/>
+                  <label for="albumName">Album Name</label>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+<script>
+$(document).ready(function(){
+  $('.collapsible').collapsible({
+    accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+  });
+});
+
+</script>
+<script>
+var app=angular.module('app',['controllers']);
+var controllers=angular.module('controllers',[]);
+controllers.controller('userDetailsController',function($scope,$http)
+{
+	$http.get('http://127.0.1:3000/index').success(function(data){
+		$scope.songs=data;
+	});
+
+	$scope.name_filter;
+
+	$scope.categorize=function(type,category){
+		var config = { headers : {'Content-Type': 'application/json'}}
+		if(category=='genre'){
+			data={"genre":type}
+		}
+		else if(category=='album'){
+			data={"album":type}
+		}
+		else{
+			data={"artist":type}
+		}
+
+		api='http://127.0.1:3000/'+category+'/'
+		$http.post(api, data, config).success(function (res) {
+        $scope.songs=res;
+      })
+		}
+
+		$scope.addToPlaylist = function(song_name){
+			var config = { headers : {'Content-Type': 'application/json'}}
+			var data = {"name":song_name}
+			$http.post('http://127.0.1:3000/playlist/', data, config).success(function (res) {
+	        Materialize.toast("Song added to playlist",3000);
+	      })
+		}
+
+});
+</script>
+</HTML>

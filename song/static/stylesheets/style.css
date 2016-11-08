@@ -1,0 +1,117 @@
+body
+{
+  background:rgb(240,240,240);
+}
+.content
+{
+  background:white;
+  border: 2px solid rgba(0,0,0,0.8);
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  padding: 30px;
+}
+.border-right
+{
+  border-right: 1px solid rgba(0,0,0,0.5);
+}
+.border-left
+{
+  border-left: 1px solid rgba(0,0,0,0.5);
+}
+.border-bottom
+{
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+}
+.padding{
+  padding: 10px;
+}
+.song{
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.songs-list{
+  overflow-y: scroll;
+  height: 70vh;
+}
+.collapsible{
+  box-shadow: none !important;
+}
+.collapsible-list{
+  padding: 10px;
+}
+.collapsible-list li{
+  padding: 10px;
+  cursor:pointer;
+  transition: 0.4s all;
+}
+.collapsible-list li:hover{
+  background: rgba(0,0,0,0.04);
+  transition: 0.4s all;
+}
+.input-group input[type=text],.input-group input[type=password],.input-group input[type=email],.input-group textarea
+{
+  font-size: 18px;
+  border:2px solid rgba(0,0,0,0.5);
+  text-indent: 10px;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.27);
+  color: rgba(0, 0, 0,0.8);
+  margin-bottom: 20px;
+}
+.input-group input[type=text]:focus,.input-group input[type=password]:focus,.input-group input[type=email]:focus,.input-group textarea:focus{
+  border-bottom: 2px solid rgba(0,0,0,0.5) !important;
+  box-shadow: 0 0 0 0 rgba(0,0,0,0.5) !important;
+}
+.input-group input::-webkit-input-placeholder,.input-group textarea::-webkit-input-placeholder{
+  color: rgba(0, 0, 0,0.56);
+}
+.custom-submit
+{
+  text-decoration: none;
+  color: black;
+  padding:10px;
+  border:1px solid black !important;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  outline:none;
+  border:none;
+  background:white;
+  cursor: pointer;
+}
+.heading
+{
+  font-size:200%;
+  font-weight: bold;
+}
+.invalid
+{
+  margin-top: 10px;
+  color: red;
+}
+.disabled{
+  box-shadow: none;
+  color: rgba(0,0,0,0.5);
+  border-color: rgba(0,0,0,0.5) !important;
+}
+body:-webkit-full-page-media {
+ background-color:rgb(240,240,240) !important;
+}
+.register{
+  border-left: 1px solid black;
+  padding-left: 10%;
+}
+.login{
+  padding-right: 10%;
+}
+.login span, .register span{
+  font-size: 190%;
+  font-weight: bold;
+}
+.signup{
+  min-height: 550px;
+}
+@media(max-width:600px)
+{
+  .border-right,.border-left
+  {
+    display: none;
+  }
+}
